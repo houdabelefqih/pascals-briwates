@@ -1,0 +1,11 @@
+figure {
+    display: inline-block;
+    padding: auto;
+    margin:auto;
+}
+
+figcaption {
+  color: red;
+  padding: 2px;
+  text-align: center;
+}
