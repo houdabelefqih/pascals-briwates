@@ -13,55 +13,49 @@
 
 
   <body>
-      <div class="container-fluid min-vh-100">
-        <div class="row justify-content-center">
-            <div class="col-12 p-0">
-                <div class="jumbotron bg-dark text-white min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-                    <div class=" fixed-top ">
-                        <h1 class="display-4">Pascal's <img class="img-fluid mh-100 mw-100" src="{{url_for('static', filename='briwa.png')}}" alt="briwa"/></h1>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="#">Pascal's <img class="img-fluid mh-100 mw-100" src="{{url_for('static', filename='briwa.png')}}" alt="briwa"></a>
+        <form class="form-inline" method="post">
+            {{ form.csrf_token }}
+          <div class="form-field mr-sm-2" placeholder="Enter row number here"> {{ form.numRow }} </div>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+        </form>
+    </nav>
 
-                    </div>
+    <div class="container-fluid min-vh-100">
+    <div class="row justify-content-center">
+        <div class="col-12 p-0">
+            <div class="jumbotron bg-dark text-white min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
 
-                    <div class="formwrapper">
-
-                          <form class="form" method="post">
-                                <h6 class="title d-inline-block">Row number:</h6>
-                                {{ form.csrf_token }}
-                                <div class="form-field d-inline-block">{{ form.numRow }}</div>
-                                <button type="submit" class="btn btn-primary"> GO </button>
-                                <div class="errors">
-                                {% if form.numRow.errors %}
-                                    <div class="alert alert-warning w-25 justify-content-center" role="alert">
-                                        {% for error in form.numRow.errors %}
-                                            {{ error }}
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                </div>
-                          </form>
-
-                    </div>
-
-                    {% if pascal %}
-                        <p class="lead">
-                            {% for row in pascal %}
-                                <div class="text-center">
-                                        {% for element in row %}
-                                            <div class="mh-100 mw-100 d-inline-block" >
-                                                <img class="img-fluid mh-100 mw-100" src="{{url_for('static', filename='briwa.png')}}" alt="briwa"/>
-                                                <div class="justify-content-center"> {{ element }} </div>
-                                            </div>
-                                        {% endfor %}
-                                </div>
+                <div class="errors text-center">
+                    {% if form.numRow.errors %}
+                        <div class="alert alert-warning w-25 justify-content-center" role="alert">
+                            {% for error in form.numRow.errors %}
+                                {{ error }}
                             {% endfor %}
-                        </p>
-
+                        </div>
                     {% endif %}
+                    </div>
 
-                </div>
+                {% if pascal %}
+                    <p class="lead">
+                        {% for row in pascal %}
+                            <div class="text-center">
+                                    {% for element in row %}
+                                        <div class="mh-100 mw-100 d-inline-block" >
+                                            <img class="img-fluid mh-100 mw-100" src="{{url_for('static', filename='briwa.png')}}" alt="briwa"/>
+                                            <div class="justify-content-center"> {{ element }} </div>
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </p>
+
+                {% endif %}
+
             </div>
         </div>
-
+    </div>
     </div>
 
 
